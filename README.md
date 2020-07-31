@@ -22,6 +22,11 @@
 <a name="metrics"/>**2. Test Metrics**
 
 <img src="https://user-images.githubusercontent.com/9977326/89027755-c6c7d800-d333-11ea-97b4-3cec54facd4c.png" width="100%"></img> 
+<img src="https://user-images.githubusercontent.com/9977326/89029561-68045d80-d337-11ea-8120-4d95a5427635.PNG" width="100%"></img> 
+<img src="https://user-images.githubusercontent.com/9977326/89029704-aa2d9f00-d337-11ea-95c3-7f9e222786b8.PNG" width="100%"></img>
+<img src="https://user-images.githubusercontent.com/9977326/89030566-676cc680-d339-11ea-904f-0d97978a48d1.png" width="100%"></img>
+<img src="https://user-images.githubusercontent.com/9977326/89030707-b155ac80-d339-11ea-9e2f-832b9b9e22b4.PNG" width="100%"></img>
+
 
 На этом дашборде собрана полная информация по выбранному тесту. Вручную можно выбрать:
 * Проект
