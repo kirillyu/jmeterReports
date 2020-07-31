@@ -46,7 +46,7 @@
 <img src="https://user-images.githubusercontent.com/9977326/89032614-b583c900-d33d-11ea-8b84-b8d00d7fb20a.png" width="100%"></img>
 После добавления получится такой тест-план:
 
-<img src="https://user-images.githubusercontent.com/9977326/89037128-a6eddf80-d346-11ea-8e62-25cb269e3ccd.png" width="45%" align="left"></img>
+<img src="https://user-images.githubusercontent.com/9977326/89037336-f6341000-d346-11ea-8607-fb5d7af498af.png" width="45%" align="left"></img>
 
 <br>
 
