@@ -1,2 +1,8 @@
 # jmeterReports
-Jmeter autogenerater reports after test to Confluence, using grafana custom dushboards.
+# Описание репозитория
+Данный репозиторий содержит в себе темплейт для ApacheJmeter, который поволяет генерировать и заливать отчет в Confluence. К темплейту прилагается нужное окружение для ApacheJmeter, в которое входит папка lib из корня - в ней содержатся все используемые плагины. Там же расположен chromedriver.exe, необходимый для работы темплейта. Репозиторий, помимо этого, включает в себя все необходимые для рендера графиков и анализа результатов дашборды Grafana, которые полностью интегрированы с данным темплейтом. 
+
+# Grafana
+На выходе вы получите несколько Grafana дашбордов:
+1. Test Trends
+[!alt text](https://github.com/kirillyu/jmeterReports/blob/master/TestTrends.png)
