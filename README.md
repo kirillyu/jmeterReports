@@ -7,9 +7,10 @@
 3. Grafana 7.0.0
 # Grafana
 На выходе вы получите несколько Grafana дашбордов:
+
 **1. Test Trends**
 
-<img src="https://user-images.githubusercontent.com/9977326/89025122-f32d2580-d32e-11ea-88d4-de8cc93ce4ba.png" width="90%"></img> 
+<img src="https://user-images.githubusercontent.com/9977326/89025122-f32d2580-d32e-11ea-88d4-de8cc93ce4ba.png" width="100%"></img> 
 
 Дашборд позволяет переключаться между проектами и смотреть суммарные метрики по каждому из них.
 
@@ -20,4 +21,12 @@
 
 <a name="metrics"/>**2. Test Metrics**
 
-AAAAA
+<img src="https://user-images.githubusercontent.com/9977326/89027755-c6c7d800-d333-11ea-97b4-3cec54facd4c.png" width="100%"></img> 
+
+На этом дашборде собрана полная информация по выбранному тесту. Вручную можно выбрать:
+* Проект
+* Количество отображаемых запусков
+* Нужный запуск
+* Конкретную операцию этого запуска
+
+
