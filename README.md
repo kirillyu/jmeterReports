@@ -48,8 +48,7 @@
 
 <img src="https://user-images.githubusercontent.com/9977326/89038166-7f981200-d348-11ea-83fd-45921fd38171.png" width="100%"></img>
 
-<a name="install"/>
-<h1> Установка и настройка </a>
+<a name="install"/><h1> Установка и настройка</h1> </a>
 
 * Превоначально необходимо поставить сам Apache Jmeter, получить актуальную версию можно по <a href="https://jmeter.apache.org/download_jmeter.cgi">ссылке</a>.
 * Далее нужны <a href="https://dl.influxdata.com/influxdb/releases/influxdb-1.8.0_windows_amd64.zip">InfluxDB</a> и <a href="https://dl.grafana.com/oss/release/grafana-7.0.0.windows-amd64.msi">Grafana</a> - ссылка для WIndows
@@ -61,4 +60,4 @@
 
 После того как инструментарий развернут, можно переходить к его интеграции с данным репозиторием. Это делается в несколько довольно простых шагов:
 1. Скачиваем репозиторий
-2. Содержимое папки JmeterUpdate переносим с заменой в папку apache-jmeter-..., то есть корень вашего Apache Jmeter. Важно, что в папке находится chrome
+2. Содержимое папки JmeterUpdate переносим с заменой в папку apache-jmeter-..., то есть корень вашего Apache Jmeter. Важно, что в папке /bin находится chromedriver.exe для Windows, с ним бывают некоторые проблемы. Если они возникнут или используется другая операционная система необходимо попробовать <a href="https://chromedriver.chromium.org/downloads">другие версии драйвера</a>. 
