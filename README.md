@@ -51,7 +51,7 @@
 <a name="install"/><h1> Установка и настройка</h1> </a>
 
 * Превоначально необходимо поставить сам Apache Jmeter, получить актуальную версию можно по <a href="https://jmeter.apache.org/download_jmeter.cgi">ссылке</a>.
-* Далее нужны <a href="https://dl.influxdata.com/influxdb/releases/influxdb-1.8.0_windows_amd64.zip">InfluxDB</a> и <a href="https://dl.grafana.com/oss/release/grafana-7.0.0.windows-amd64.msi">Grafana</a> - ссылка для WIndows
+* Далее нужны <a href="https://dl.influxdata.com/influxdb/releases/influxdb-1.8.0_windows_amd64.zip">InfluxDB</a> и <a href="https://dl.grafana.com/oss/release/grafana-7.0.0.windows-amd64.msi">Grafana</a> - ссылка для Windows
 * Настраивать ничего не нужно на данном этапе. Из папки с InfluxDB запускаем файл indluxd - по дефолту Influx будет на порту 8086, кастомизация происходит в файле influxdb.conf
 * Для запуска Grafana достаточно стартануть файл grafana-server - она запустится на порту 3000, конфигурационный файл defaults.ini
 * Confluence - корпоративная система, подразумевается, что он уже развернут в вашей компании. Если это не так - можно взять его <a href="https://www.atlassian.com/ru/software/confluence/download">отсюда</a>, но настройки потребуется провести самостоятельно. Никаких кастомных настроек не требуется, просто наличие рабочего SPACE и пользователя, который имеет **доступ к API**
@@ -63,7 +63,10 @@
 
 1. Скачиваем репозиторий
 2. Содержимое папки JmeterUpdate переносим с заменой в папку apache-jmeter-..., то есть корень вашего Apache Jmeter. Важно, что в папке /bin находится chromedriver.exe для Windows, с ним бывают некоторые проблемы. Если они возникнут или используется другая операционная система необходимо попробовать <a href="https://chromedriver.chromium.org/downloads">другие версии драйвера</a>.
-3. ДОБАВИТЬ ДАТАСОРС!!!
+3. Первичная настройка Grafana заключается в подключении нужного Data Source. 
+
+<img src="https://user-images.githubusercontent.com/9977326/89129564-f2e78280-d506-11ea-92b7-ee3cff6bade9.png" width="100%"></img>
+
 4. Ипортируем все дашборды из репозитория в Grafana. Правильно делается это так: в интфейсе Grafana слева есть вкладка Dashboards, в ней нужно выбрать Manage. Далее на открывшейся странице выбираем Import, после чего нажать на Upload.json, туда по очереди загрузить 3 .json файла из репозитория, в каждом из которых необходимо указать Data Source из пункта 3.
 
 <img src="https://user-images.githubusercontent.com/9977326/89063549-06f97b80-d371-11ea-9184-bbd72ea94e02.png" width="100%"></img>
