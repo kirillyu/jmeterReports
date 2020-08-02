@@ -63,7 +63,7 @@
 
 1. Скачиваем репозиторий
 2. Содержимое папки JmeterUpdate переносим с заменой в папку apache-jmeter-..., то есть корень вашего Apache Jmeter. Важно, что в папке /bin находится chromedriver.exe для Windows, с ним бывают некоторые проблемы. Если они возникнут или используется другая операционная система необходимо попробовать <a href="https://chromedriver.chromium.org/downloads">другие версии драйвера</a>.
-3. Первичная настройка Grafana заключается в подключении нужного Data Source. 
+3. Первичная настройка Grafana заключается в подключении нужного Data Source. Configuration -> Data Sources -> Add Data Source -> InfluxDB -> вводим параметры подключения с указанием машины, на которую поставлен InfluxDB и порта (по дефолту 8086). Database в нашем случае - jmeter. После этого нажимаем Save & Test.
 
 <img src="https://user-images.githubusercontent.com/9977326/89129564-f2e78280-d506-11ea-92b7-ee3cff6bade9.png" width="100%"></img>
 
