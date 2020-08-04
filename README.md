@@ -94,9 +94,9 @@ IMG
 >
 >Информация о проекте:
 >
->***
+>`***`
 >
->***
+>`***`
 >
 >Сводная таблица:
 >
@@ -111,12 +111,19 @@ IMG
 >Метрики теста:
 >
 >!VUsers.png!
+>
 >!ErrorPerSec.png!
+>
 >!TotalTransactions.png!
+>
 >!EachOperation.png!
+>
 >!90.png!
+>
 >!95.png!
+>
 >!99.png!
+>
 >!TransactionsResponseTime.png!
 
 
