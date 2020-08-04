@@ -80,7 +80,7 @@
 
 <img src="https://user-images.githubusercontent.com/9977326/89258206-62a55c80-d630-11ea-89ea-7889b3d4a34f.png" width="100%"></img>
 
-7. Последним этапом настройки Grafana будет установка плагина рендера графиков. Его можно взять <a hreaf="https://grafana.com/grafana/plugins/grafana-image-renderer/installation">тут</a>. Там же описана его установка. После нее нужно перезапустить Grafana. 
+7. Последним этапом настройки Grafana будет установка плагина рендера графиков. Его можно взять <a href="https://grafana.com/grafana/plugins/grafana-image-renderer/installation">тут</a>. Там же описана его установка. После нее нужно перезапустить Grafana. 
 
 7. Добавляем шаблон отчета проекта в Confluence. ПРИМЕР ШАБЛОНА
 8. Осталось настроить только JMeter
