@@ -88,43 +88,43 @@ IMG
 * Переходим на страницу шаблона и нажимаем редактировать
 * В верхней панели редактора нажимаем "+" ("Вставить прочий контент") или просто нажимаем ctrl + shift + d.
 * В открышееся окно вставляем разметку типа "Confluence wiki":
->VERSION_NUM
+>`VERSION_NUM`
 >
->Дата формирования отчета: RELEASE_DATE
+>`Дата формирования отчета: RELEASE_DATE`
 >
->Информация о проекте:
->
->`***`
+>`Информация о проекте:`
 >
 >`***`
 >
->Сводная таблица:
+>`***`
 >
->ALL_TABLE
+>`Сводная таблица:`
 >
->Ошибки:
+>`ALL_TABLE`
 >
->ERROR_TABLE
+>`Ошибки:`
 >
->Тест проходил с TIME_FROM до RELEASE_DATE
+>`ERROR_TABLE`
 >
->Метрики теста:
+>`Тест проходил с TIME_FROM до RELEASE_DATE`
 >
->!VUsers.png!
+>`Метрики теста:`
 >
->!ErrorPerSec.png!
+>`!VUsers.png!`
 >
->!TotalTransactions.png!
+>`!ErrorPerSec.png!`
 >
->!EachOperation.png!
+>`!TotalTransactions.png!`
 >
->!90.png!
+>`!EachOperation.png!`
 >
->!95.png!
+>`!90.png!`
+>
+>`!95.png!`
 >
 >!99.png!
 >
->!TransactionsResponseTime.png!
+>`!TransactionsResponseTime.png!`
 
 
 IMG
