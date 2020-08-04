@@ -161,8 +161,8 @@
 * grafana_api_key - это то, что мы получили в п.6.
 * grafana_login - логин любого пользователя, у которого есть права типа Viewer и выше
 * grafana_pass - пароль того же пользователя
-* grafana_host - хост на котором развернута Grafana
-* grafana_port - порт на котором развернута Grafana
+* grafana_host - хост, на котором развернута Grafana
+* grafana_port - порт, на котором развернута Grafana
 * confl_user - логин пользователя confluence, который имеет доступ к Rest API
 * confl_pass - пароль того же пользователя
 
