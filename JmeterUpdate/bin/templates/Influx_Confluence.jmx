@@ -2,7 +2,7 @@
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.3">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
-      <stringProp name="TestPlan.comments">This test plan was created by the BlazeMeter converter v.2.1.386. Please contact support@blazemeter.com for further support.</stringProp>
+      <stringProp name="TestPlan.comments"></stringProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
@@ -44,6 +44,12 @@
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Домен вашего приложения</stringProp>
           </elementProp>
+          <elementProp name="version_get_path" elementType="Argument">
+            <stringProp name="Argument.name">version_get_path</stringProp>
+            <stringProp name="Argument.value">api/version</stringProp>
+            <stringProp name="Argument.desc">запрос к текущей версии вашего приложения</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
           <elementProp name="conf_folger" elementType="Argument">
             <stringProp name="Argument.name">conf_folger</stringProp>
             <stringProp name="Argument.value">12345678</stringProp>
@@ -62,9 +68,9 @@
             <stringProp name="Argument.desc">Домен вашего конфлюенса</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="cromedriver_path" elementType="Argument">
-            <stringProp name="Argument.name">cromedriver_path</stringProp>
-            <stringProp name="Argument.value">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__BeanShell(File.separator,)}chromedriver.exe </stringProp>
+          <elementProp name="chromedriver_path" elementType="Argument">
+            <stringProp name="Argument.name">chromedriver_path</stringProp>
+            <stringProp name="Argument.value">${__groovy(return System.getProperty(&quot;user.dir&quot;))}${__BeanShell(File.separator,)}chromedriver.exe </stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Путь к вашему хромдрайверу, по дефолту я кидаю в /bin и ищет он там же. Важно - на машине должен стоят бразуер Chrome</stringProp>
           </elementProp>
@@ -72,6 +78,54 @@
             <stringProp name="Argument.name">space</stringProp>
             <stringProp name="Argument.value">TEST</stringProp>
             <stringProp name="Argument.desc">confluence SPACE name</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="grafana_data_source" elementType="Argument">
+            <stringProp name="Argument.name">grafana_data_source</stringProp>
+            <stringProp name="Argument.value">InfluxDB</stringProp>
+            <stringProp name="Argument.desc">название дата сорса в графана</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="grafana_api_key" elementType="Argument">
+            <stringProp name="Argument.name">grafana_api_key</stringProp>
+            <stringProp name="Argument.value">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</stringProp>
+            <stringProp name="Argument.desc">API токен сгенерированный в графана</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="grafana_login" elementType="Argument">
+            <stringProp name="Argument.name">grafana_login</stringProp>
+            <stringProp name="Argument.value">admin</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">Логин для входа в графану</stringProp>
+          </elementProp>
+          <elementProp name="grafana_pass" elementType="Argument">
+            <stringProp name="Argument.name">grafana_pass</stringProp>
+            <stringProp name="Argument.value">12345678</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">Пароль для входа в графану</stringProp>
+          </elementProp>
+          <elementProp name="grafana_host" elementType="Argument">
+            <stringProp name="Argument.name">grafana_host</stringProp>
+            <stringProp name="Argument.value">localhost</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">Хост графаны</stringProp>
+          </elementProp>
+          <elementProp name="grafana_port" elementType="Argument">
+            <stringProp name="Argument.name">grafana_port</stringProp>
+            <stringProp name="Argument.value">3000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">Порт графаны</stringProp>
+          </elementProp>
+          <elementProp name="confl_user" elementType="Argument">
+            <stringProp name="Argument.name">confl_user</stringProp>
+            <stringProp name="Argument.value">tester</stringProp>
+            <stringProp name="Argument.desc">Логин конфлюенса</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="confl_pass" elementType="Argument">
+            <stringProp name="Argument.name">confl_pass</stringProp>
+            <stringProp name="Argument.value">1234qwer</stringProp>
+            <stringProp name="Argument.desc">Пароль конфлюенса</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -150,71 +204,71 @@
           <stringProp name="URL"></stringProp>
           <stringProp name="RESULT_CLASS">org.apache.jmeter.samplers.SampleResult</stringProp>
         </kg.apc.jmeter.samplers.DummySampler>
-        <hashTree>
-          <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="true">
-            <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
-              <collectionProp name="Arguments.arguments">
-                <elementProp name="influxdbMetricsSender" elementType="Argument">
-                  <stringProp name="Argument.name">influxdbMetricsSender</stringProp>
-                  <stringProp name="Argument.value">org.apache.jmeter.visualizers.backend.influxdb.HttpMetricsSender</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-                <elementProp name="influxdbUrl" elementType="Argument">
-                  <stringProp name="Argument.name">influxdbUrl</stringProp>
-                  <stringProp name="Argument.value">http://${influx_host}:8086/write?db=jmeter</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-                <elementProp name="application" elementType="Argument">
-                  <stringProp name="Argument.name">application</stringProp>
-                  <stringProp name="Argument.value">${__P(projectName,${project_name})}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-                <elementProp name="measurement" elementType="Argument">
-                  <stringProp name="Argument.name">measurement</stringProp>
-                  <stringProp name="Argument.value">jmeter</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-                <elementProp name="summaryOnly" elementType="Argument">
-                  <stringProp name="Argument.name">summaryOnly</stringProp>
-                  <stringProp name="Argument.value">false</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-                <elementProp name="samplersRegex" elementType="Argument">
-                  <stringProp name="Argument.name">samplersRegex</stringProp>
-                  <stringProp name="Argument.value">.*</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-                <elementProp name="percentiles" elementType="Argument">
-                  <stringProp name="Argument.name">percentiles</stringProp>
-                  <stringProp name="Argument.value">99;95;90</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-                <elementProp name="testTitle" elementType="Argument">
-                  <stringProp name="Argument.name">testTitle</stringProp>
-                  <stringProp name="Argument.value">${__P(test_name,${test_name})}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-                <elementProp name="eventTags" elementType="Argument">
-                  <stringProp name="Argument.name">eventTags</stringProp>
-                  <stringProp name="Argument.value"></stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-                <elementProp name="TAG_testRun" elementType="Argument">
-                  <stringProp name="Argument.name">TAG_testRun</stringProp>
-                  <stringProp name="Argument.value">${__groovy(def Tag1 = &apos;${__dateTimeConvert(${__P(TESTSTART.MS)},,dd-MM-yy_HH:mm,)}&apos; + &apos; &apos; + &apos;${__P(TimeDurationTest,${custom_duration})}&apos;.toString(); return Tag1;)}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-              </collectionProp>
-            </elementProp>
-            <stringProp name="classname">org.apache.jmeter.visualizers.backend.influxdb.InfluxdbBackendListenerClient</stringProp>
-          </BackendListener>
-          <hashTree/>
-          <JSR223Listener guiclass="TestBeanGUI" testclass="JSR223Listener" testname="JSR223 Listener" enabled="true">
-            <stringProp name="scriptLanguage">groovy</stringProp>
-            <stringProp name="parameters"></stringProp>
-            <stringProp name="filename"></stringProp>
-            <stringProp name="cacheKey">true</stringProp>
-            <stringProp name="script">result = new StringBuilder();
+        <hashTree/>
+        <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="true">
+          <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="influxdbMetricsSender" elementType="Argument">
+                <stringProp name="Argument.name">influxdbMetricsSender</stringProp>
+                <stringProp name="Argument.value">org.apache.jmeter.visualizers.backend.influxdb.HttpMetricsSender</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="influxdbUrl" elementType="Argument">
+                <stringProp name="Argument.name">influxdbUrl</stringProp>
+                <stringProp name="Argument.value">http://${influx_host}:8086/write?db=jmeter</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="application" elementType="Argument">
+                <stringProp name="Argument.name">application</stringProp>
+                <stringProp name="Argument.value">${__P(projectName,${project_name})}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="measurement" elementType="Argument">
+                <stringProp name="Argument.name">measurement</stringProp>
+                <stringProp name="Argument.value">jmeter</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="summaryOnly" elementType="Argument">
+                <stringProp name="Argument.name">summaryOnly</stringProp>
+                <stringProp name="Argument.value">false</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="samplersRegex" elementType="Argument">
+                <stringProp name="Argument.name">samplersRegex</stringProp>
+                <stringProp name="Argument.value">.*</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="percentiles" elementType="Argument">
+                <stringProp name="Argument.name">percentiles</stringProp>
+                <stringProp name="Argument.value">99;95;90</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="testTitle" elementType="Argument">
+                <stringProp name="Argument.name">testTitle</stringProp>
+                <stringProp name="Argument.value">${__P(test_name,${test_name})}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="eventTags" elementType="Argument">
+                <stringProp name="Argument.name">eventTags</stringProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="TAG_testRun" elementType="Argument">
+                <stringProp name="Argument.name">TAG_testRun</stringProp>
+                <stringProp name="Argument.value">${__groovy(def Tag1 = &apos;${__dateTimeConvert(${__P(TESTSTART.MS)},,dd-MM-yy_HH:mm,)}&apos; + &apos; &apos; + &apos;${__P(TimeDurationTest,${custom_duration})}&apos;.toString(); return Tag1;)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="classname">org.apache.jmeter.visualizers.backend.influxdb.InfluxdbBackendListenerClient</stringProp>
+        </BackendListener>
+        <hashTree/>
+        <JSR223Listener guiclass="TestBeanGUI" testclass="JSR223Listener" testname="JSR223 Listener" enabled="true">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">result = new StringBuilder();
 def Tag = &quot;${__groovy(def Tag1 = &apos;${__dateTimeConvert(${__P(TESTSTART.MS)},,dd-MM-yy_HH:mm,)}&apos;; return Tag1;)}&quot;
 
 status = &quot;Failure&quot;;
@@ -288,9 +342,8 @@ if (result.toString()!=&quot;&quot;) {
 
 
 </stringProp>
-          </JSR223Listener>
-          <hashTree/>
-        </hashTree>
+        </JSR223Listener>
+        <hashTree/>
       </hashTree>
       <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
@@ -447,13 +500,14 @@ def host2 = &quot;&quot;
 def version_path = &quot;&quot;
 def folger_id = &quot;&quot;
 def template_page = &quot;&quot;
-// Если проектов несколько удобнее задавать данные по ним через свитч
+// Если проектов несколько удобнее задавать данные по ним через свитч но задавать папку с отчетами в Confluence и страницу отчета нужно вручную
 switch (&quot;${project_name}&quot;){
-	case &quot;Project1&quot;:	// три параметра ниже для аппаратных ресурсов испортируемых в графану из заббикса (отдельный дашборд) они влияют на исполнение блока Server Metrics
-		template = &quot;Template&quot; 
-		host1 = &quot;apphost1&quot; 
-		host2 = &quot;apphost2&quot; 
-		version_path = &quot;api/version&quot; // Эта штука содерит запрос к версии вашего приложения. Если хотите проставлять её самостоятельно - оставьте так как есть и выключите запрос GetVersion
+	//вместо Project1 укажите ваше название проекта
+	case &quot;Project1&quot;: 	// три параметра ниже для аппаратных ресурсов испортируемых в графану из заббикса (отдельный дашборд) они влияют на исполнение блока Server Metrics
+		//template = &quot;Template&quot; 
+		//host1 = &quot;apphost1&quot; 
+		//host2 = &quot;apphost2&quot; 
+		version_path = &quot;${version_get_path}&quot; // Эта штука содерит запрос к версии вашего приложения. Если хотите проставлять её самостоятельно - оставьте так как есть и выключите запрос GetVersion
 		folger_id = &quot;${conf_folger}&quot; // Читать в User Defined Variables
 		template_page = &quot;${conf_templ}&quot; // Читать в User Defined Variables
 		break
@@ -576,7 +630,7 @@ log.info(&quot;${all}&quot;)</stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="cacheKey">true</stringProp>
-          <stringProp name="script">def vers = &apos;&apos;&apos;${version_1_g0}&apos;&apos;&apos;.replaceAll(&quot;\\r\\n|\\r|\\n&quot;,&quot;&quot;).replaceAll(&quot;&#x0;&quot;,&quot;&quot;).replaceAll(&quot;\&quot;&quot;,&quot;&quot;).replaceAll(/[^0-9\.]/,&quot;&quot;)
+          <stringProp name="script">def vers = vars.get(&apos;version_1_g0&apos;).replaceAll(&quot;\\r\\n|\\r|\\n&quot;,&quot;&quot;).replaceAll(&quot;&#x0;&quot;,&quot;&quot;).replaceAll(&quot;\&quot;&quot;,&quot;&quot;).replaceAll(/[^0-9\.]/,&quot;&quot;)
 vars.put(&quot;version_out&quot;,vers)
 def title = &quot;v&quot;+vers+&quot;_d&quot; + &apos;${__dateTimeConvert(${__P(TESTSTART.MS)},,dd-MM-yy_HH:mm,)}&apos;
 vars.put(&quot;title&quot;,title)
@@ -597,14 +651,14 @@ vars.put(&quot;title&quot;,title)
             <collectionProp name="Arguments.arguments">
               <elementProp name="os_username" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">login</stringProp>
+                <stringProp name="Argument.value">${confl_user}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">os_username</stringProp>
               </elementProp>
               <elementProp name="os_password" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">password</stringProp>
+                <stringProp name="Argument.value">${confl_pass}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">os_password</stringProp>
@@ -670,7 +724,8 @@ vars.put(&quot;title&quot;,title)
           <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="TestPlan.comments">Создаем пустую страницу, которую будем наполнять данными</stringProp>
+          <stringProp name="TestPlan.comments">Создаем пустую страницу, которую будем наполнять данными. Структура такая: создаем путую страницу (это будет папка с отчетами), 
+внутри нее уже создаем страницу, которая будет являться нашим шаблоном. Её наполняем как нам надо. Описано в пункте GetTemplate</stringProp>
         </HTTPSamplerProxy>
         <hashTree>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
@@ -719,6 +774,9 @@ vars.put(&quot;title&quot;,title)
           <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="TestPlan.comments">Этим запросом дергаем шаблон из конфленса который будем наполнять новыми данными, в шаблоне нужно вставить картинки с названиями, которые будут соответствовать 
+тем что мы будем загружать в конце (только тогда они будут подменяться автоматически). Также в шаблоне нужно оставить переменные, котоыре будут подменяться 
+на что-то полезное в пункте ChangeOutput</stringProp>
         </HTTPSamplerProxy>
         <hashTree>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
@@ -818,7 +876,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
                 <elementProp name="var-data_source" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">var-data_source</stringProp>
-                  <stringProp name="Argument.value">InfluxDB-1</stringProp>
+                  <stringProp name="Argument.value">${grafana_data_source}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -901,8 +959,8 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/renderdash/render-dash</stringProp>
@@ -921,7 +979,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -1008,7 +1066,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
                 <elementProp name="var-data_source" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">var-data_source</stringProp>
-                  <stringProp name="Argument.value">InfluxDB-1</stringProp>
+                  <stringProp name="Argument.value">${grafana_data_source}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -1091,8 +1149,8 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/renderdash/render-dash</stringProp>
@@ -1111,7 +1169,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -1127,196 +1185,6 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
             <hashTree/>
             <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="Save Responses to a file" enabled="true">
               <stringProp name="FileSaver.filename">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}ErrorPerSec</stringProp>
-              <boolProp name="FileSaver.errorsonly">false</boolProp>
-              <boolProp name="FileSaver.successonly">true</boolProp>
-              <boolProp name="FileSaver.skipsuffix">false</boolProp>
-              <boolProp name="FileSaver.skipautonumber">true</boolProp>
-              <stringProp name="FileSaver.variablename">fileReg</stringProp>
-            </ResultSaver>
-            <hashTree/>
-            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="false">
-              <stringProp name="scriptLanguage">groovy</stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">prev.setIgnore()</stringProp>
-            </JSR223PostProcessor>
-            <hashTree/>
-          </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="TotalTransactions" enabled="true">
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
-              <collectionProp name="Arguments.arguments">
-                <elementProp name="orgId" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">orgId</stringProp>
-                  <stringProp name="Argument.value">1</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="from" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">from</stringProp>
-                  <stringProp name="Argument.value">${datetimestart}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="to" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">to</stringProp>
-                  <stringProp name="Argument.value">${datetimeend}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="var-project" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">var-project</stringProp>
-                  <stringProp name="Argument.value">${project_name}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="var-limit" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">var-limit</stringProp>
-                  <stringProp name="Argument.value">5</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="var-run" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">var-run</stringProp>
-                  <stringProp name="Argument.value">${__groovy(def Tag1 = &apos;${__dateTimeConvert(${__P(TESTSTART.MS)},,dd-MM-yy_HH:mm,)}&apos; + &apos; &apos; + &apos;${__P(TimeDurationTest,${custom_duration})}&apos;.toString(); return Tag1;)}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="var-request" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">var-request</stringProp>
-                  <stringProp name="Argument.value">all</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="var-data_source" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">var-data_source</stringProp>
-                  <stringProp name="Argument.value">InfluxDB-1</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="var-measurement_name" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">var-measurement_name</stringProp>
-                  <stringProp name="Argument.value">jmeter</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="var-send_interval" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">var-send_interval</stringProp>
-                  <stringProp name="Argument.value">5</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="var-TopRps" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">var-TopRps</stringProp>
-                  <stringProp name="Argument.value">All</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="var-TopAvg" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">var-TopAvg</stringProp>
-                  <stringProp name="Argument.value">All</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="var-Top90" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">var-Top90</stringProp>
-                  <stringProp name="Argument.value">All</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="var-Top95" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">var-Top95</stringProp>
-                  <stringProp name="Argument.value">All</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="var-Top99" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">var-Top99</stringProp>
-                  <stringProp name="Argument.value">All</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="panelId" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">panelId</stringProp>
-                  <stringProp name="Argument.value">4</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="width" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">width</stringProp>
-                  <stringProp name="Argument.value">1500</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="height" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">height</stringProp>
-                  <stringProp name="Argument.value">550</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="tz" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">tz</stringProp>
-                  <stringProp name="Argument.value">Europe/Moscow</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-              </collectionProp>
-            </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
-            <stringProp name="HTTPSampler.protocol"></stringProp>
-            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">render/d-solo/renderdash/render-dash</stringProp>
-            <stringProp name="HTTPSampler.method">GET</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-            <stringProp name="HTTPSampler.response_timeout"></stringProp>
-            <stringProp name="TestPlan.comments">4 panel</stringProp>
-          </HTTPSamplerProxy>
-          <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-              <collectionProp name="HeaderManager.headers">
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
-                </elementProp>
-              </collectionProp>
-            </HeaderManager>
-            <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
-              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-              <stringProp name="RegexExtractor.refname">fileReg</stringProp>
-              <stringProp name="RegexExtractor.regex">.+</stringProp>
-              <stringProp name="RegexExtractor.template"></stringProp>
-              <stringProp name="RegexExtractor.default"></stringProp>
-              <stringProp name="RegexExtractor.match_number"></stringProp>
-            </RegexExtractor>
-            <hashTree/>
-            <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="Save Responses to a file" enabled="true">
-              <stringProp name="FileSaver.filename">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}TotalTransactions</stringProp>
               <boolProp name="FileSaver.errorsonly">false</boolProp>
               <boolProp name="FileSaver.successonly">true</boolProp>
               <boolProp name="FileSaver.skipsuffix">false</boolProp>
@@ -1388,7 +1256,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
                 <elementProp name="var-data_source" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">var-data_source</stringProp>
-                  <stringProp name="Argument.value">InfluxDB-1</stringProp>
+                  <stringProp name="Argument.value">${grafana_data_source}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -1471,8 +1339,8 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/renderdash/render-dash</stringProp>
@@ -1491,7 +1359,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -1521,6 +1389,196 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="script">prev.setIgnore()</stringProp>
             </JSR223PostProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="TotalTransactions" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="orgId" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">orgId</stringProp>
+                  <stringProp name="Argument.value">1</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="from" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">from</stringProp>
+                  <stringProp name="Argument.value">${datetimestart}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="to" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">to</stringProp>
+                  <stringProp name="Argument.value">${datetimeend}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="var-project" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">var-project</stringProp>
+                  <stringProp name="Argument.value">${project_name}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="var-limit" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">var-limit</stringProp>
+                  <stringProp name="Argument.value">5</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="var-run" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">var-run</stringProp>
+                  <stringProp name="Argument.value">${__groovy(def Tag1 = &apos;${__dateTimeConvert(${__P(TESTSTART.MS)},,dd-MM-yy_HH:mm,)}&apos; + &apos; &apos; + &apos;${__P(TimeDurationTest,${custom_duration})}&apos;.toString(); return Tag1;)}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="var-request" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">var-request</stringProp>
+                  <stringProp name="Argument.value">all</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="var-data_source" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">var-data_source</stringProp>
+                  <stringProp name="Argument.value">${grafana_data_source}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="var-measurement_name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">var-measurement_name</stringProp>
+                  <stringProp name="Argument.value">jmeter</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="var-send_interval" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">var-send_interval</stringProp>
+                  <stringProp name="Argument.value">5</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="var-TopRps" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">var-TopRps</stringProp>
+                  <stringProp name="Argument.value">All</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="var-TopAvg" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">var-TopAvg</stringProp>
+                  <stringProp name="Argument.value">All</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="var-Top90" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">var-Top90</stringProp>
+                  <stringProp name="Argument.value">All</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="var-Top95" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">var-Top95</stringProp>
+                  <stringProp name="Argument.value">All</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="var-Top99" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">var-Top99</stringProp>
+                  <stringProp name="Argument.value">All</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="panelId" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">panelId</stringProp>
+                  <stringProp name="Argument.value">4</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="width" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">width</stringProp>
+                  <stringProp name="Argument.value">1500</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="height" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">height</stringProp>
+                  <stringProp name="Argument.value">550</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="tz" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">tz</stringProp>
+                  <stringProp name="Argument.value">Europe/Moscow</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">render/d-solo/renderdash/render-dash</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">4 panel</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">fileReg</stringProp>
+              <stringProp name="RegexExtractor.regex">.+</stringProp>
+              <stringProp name="RegexExtractor.template"></stringProp>
+              <stringProp name="RegexExtractor.default"></stringProp>
+              <stringProp name="RegexExtractor.match_number"></stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="Save Responses to a file" enabled="true">
+              <stringProp name="FileSaver.filename">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}TotalTransactions</stringProp>
+              <boolProp name="FileSaver.errorsonly">false</boolProp>
+              <boolProp name="FileSaver.successonly">true</boolProp>
+              <boolProp name="FileSaver.skipsuffix">false</boolProp>
+              <boolProp name="FileSaver.skipautonumber">true</boolProp>
+              <stringProp name="FileSaver.variablename">fileReg</stringProp>
+            </ResultSaver>
+            <hashTree/>
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="false">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">prev.setIgnore()</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="TransactionsResponseTime" enabled="true">
@@ -1578,7 +1636,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
                 <elementProp name="var-data_source" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">var-data_source</stringProp>
-                  <stringProp name="Argument.value">InfluxDB-1</stringProp>
+                  <stringProp name="Argument.value">${grafana_data_source}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -1661,8 +1719,8 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/renderdash/render-dash</stringProp>
@@ -1680,7 +1738,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -1767,7 +1825,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
                 <elementProp name="var-data_source" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">var-data_source</stringProp>
-                  <stringProp name="Argument.value">InfluxDB-1</stringProp>
+                  <stringProp name="Argument.value">${grafana_data_source}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -1850,8 +1908,8 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/renderdash/render-dash</stringProp>
@@ -1870,7 +1928,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -1957,7 +2015,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
                 <elementProp name="var-data_source" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">var-data_source</stringProp>
-                  <stringProp name="Argument.value">InfluxDB-1</stringProp>
+                  <stringProp name="Argument.value">${grafana_data_source}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -2040,8 +2098,8 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/renderdash/render-dash</stringProp>
@@ -2060,7 +2118,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -2147,7 +2205,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
                 <elementProp name="var-data_source" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">var-data_source</stringProp>
-                  <stringProp name="Argument.value">InfluxDB-1</stringProp>
+                  <stringProp name="Argument.value">${grafana_data_source}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -2230,8 +2288,8 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/renderdash/render-dash</stringProp>
@@ -2250,7 +2308,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -2298,21 +2356,22 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
             <boolProp name="WebDriverConfig.maximize_browser">false</boolProp>
             <boolProp name="WebDriverConfig.reset_per_iteration">false</boolProp>
             <boolProp name="WebDriverConfig.dev_mode">false</boolProp>
-            <stringProp name="ChromeDriverConfig.chromedriver_path">C:/LOAD/apache-jmeter-5.3/bin/chromedriver.exe </stringProp>
+            <stringProp name="ChromeDriverConfig.chromedriver_path">${chromedriver_path}</stringProp>
             <boolProp name="ChromeDriverConfig.android_enabled">false</boolProp>
-            <boolProp name="ChromeDriverConfig.headless_enabled">false</boolProp>
+            <boolProp name="ChromeDriverConfig.headless_enabled">true</boolProp>
             <boolProp name="ChromeDriverConfig.insecurecerts_enabled">false</boolProp>
             <boolProp name="ChromeDriverConfig.incognito_enabled">false</boolProp>
           </com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig>
           <hashTree/>
           <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="ErrorsTable" enabled="true">
-            <stringProp name="WebDriverSampler.script">var pkg = JavaImporter(org.openqa.selenium);
-var ui = JavaImporter(org.openqa.selenium.support.ui);
+            <stringProp name="WebDriverSampler.script">var support_ui = JavaImporter(org.openqa.selenium.support.ui.WebDriverWait)
+var pkg = JavaImporter(org.openqa.selenium, org.openqa.selenium.support.ui)
+
 
 WDS.sampleResult.sampleStart()
-WDS.browser.get(&apos;http://${influx_host}:3000/login&apos;)
-var searchField = WDS.browser.findElement(pkg.By.name(&quot;user&quot;)).sendKeys([&apos;admin&apos;]);;
-var searchField2 = WDS.browser.findElement(pkg.By.name(&quot;password&quot;)).sendKeys([&apos;1234qwer&apos;]);
+WDS.browser.get(&apos;http://${grafana_host}:${grafana_port}/login&apos;)
+var searchField = WDS.browser.findElement(pkg.By.name(&quot;user&quot;)).sendKeys([&apos;${grafana_login}&apos;]);;
+var searchField2 = WDS.browser.findElement(pkg.By.name(&quot;password&quot;)).sendKeys([&apos;${grafana_pass}&apos;]);
 var button = WDS.browser.findElement(pkg.By.tagName(&apos;button&apos;)); //Find Search button
 button.click()
 var attempt2 = 1 
@@ -2321,11 +2380,15 @@ while (attempt2&lt;5) {
 	attempt2++
 }
 
-WDS.browser.get(&quot;http://ms-loaddgtl007:3000/d/renderdash/render-dash?viewPanel=42&amp;orgId=1&amp;from=${datetimestart}&amp;to=${datetimeend}&amp;var-project=${project_name}&amp;var-limit=5&amp;var-run=${__groovy(def Tag1 = &apos;${__dateTimeConvert(${__P(TESTSTART.MS)},,dd-MM-yy_HH:mm,)}&apos; + &apos; &apos; + &apos;${__P(TimeDurationTest,${custom_duration})}&apos;.toString(); return Tag1;)}&amp;var-request=all&amp;var-data_source=InfluxDB-1&amp;var-measurement_name=jmeter&amp;var-send_interval=5&amp;var-TopRps=All&amp;var-TopAvg=All&amp;var-Top90=All&amp;var-Top95=All&amp;var-Top99=All&quot;)
-java.lang.Thread.sleep(5000)
-WDS.vars.put(&quot;html&quot;,WDS.browser.getPageSource())
-WDS.log.info(WDS.browser.getPageSource())
-WDS.sampleResult.sampleEnd()</stringProp>
+WDS.browser.get(&quot;http://${grafana_host}:${grafana_port}/d/renderdash/render-dash?viewPanel=42&amp;orgId=1&amp;from=${datetimestart}&amp;to=${datetimeend}&amp;var-project=${project_name}&amp;var-limit=5&amp;var-run=${__groovy(def Tag1 = &apos;${__dateTimeConvert(${__P(TESTSTART.MS)},,dd-MM-yy_HH:mm,)}&apos; + &apos; &apos; + &apos;${__P(TimeDurationTest,${custom_duration})}&apos;.toString(); return Tag1;)}&amp;var-request=all&amp;var-data_source=${grafana_data_source}&amp;var-measurement_name=jmeter&amp;var-send_interval=5&amp;var-TopRps=All&amp;var-TopAvg=All&amp;var-Top90=All&amp;var-Top95=All&amp;var-Top99=All&quot;)
+var wait = new pkg.WebDriverWait(WDS.browser, 20000)
+wait.until(pkg.ExpectedConditions.visibilityOfElementLocated(pkg.By.className(&quot;table-panel-table&quot;)));
+var elem = WDS.browser.findElement(pkg.By.className(&quot;table-panel-table&quot;))
+if (elem.empty) {
+	WDS.sampleResult.successful = false
+     WDS.sampleResult.responseMessage = &apos;There were no results returned&apos;
+}
+WDS.vars.put(&quot;html&quot;,WDS.browser.getPageSource())</stringProp>
             <stringProp name="WebDriverSampler.parameters"></stringProp>
             <stringProp name="WebDriverSampler.language">javascript</stringProp>
           </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
@@ -2455,15 +2518,22 @@ import org.jsoup.select.Elements;
             <hashTree/>
           </hashTree>
           <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="BigTable" enabled="true">
-            <stringProp name="WebDriverSampler.script">var pkg = JavaImporter(org.openqa.selenium);
-var ui = JavaImporter(org.openqa.selenium.support.ui);
+            <stringProp name="WebDriverSampler.script">var support_ui = JavaImporter(org.openqa.selenium.support.ui.WebDriverWait)
+var pkg = JavaImporter(org.openqa.selenium, org.openqa.selenium.support.ui)
 
 WDS.sampleResult.sampleStart()
 
-WDS.browser.get(&quot;http://ms-loaddgtl007:3000/d/renderdash/render-dash?viewPanel=52&amp;orgId=1&amp;from=${datetimestart}&amp;to=${datetimeend}&amp;var-project=${project_name}&amp;var-limit=5&amp;var-run=${__groovy(def Tag1 = &apos;${__dateTimeConvert(${__P(TESTSTART.MS)},,dd-MM-yy_HH:mm,)}&apos; + &apos; &apos; + &apos;${__P(TimeDurationTest,${custom_duration})}&apos;.toString(); return Tag1;)}&amp;var-request=all&amp;var-data_source=InfluxDB-1&amp;var-measurement_name=jmeter&amp;var-send_interval=5&amp;var-TopRps=All&amp;var-TopAvg=All&amp;var-Top90=All&amp;var-Top95=All&amp;var-Top99=All&quot;)
-java.lang.Thread.sleep(5000)
+WDS.browser.get(&quot;http://${grafana_host}:${grafana_port}/d/renderdash/render-dash?viewPanel=52&amp;orgId=1&amp;from=${datetimestart}&amp;to=${datetimeend}&amp;var-project=${project_name}&amp;var-limit=5&amp;var-run=${__groovy(def Tag1 = &apos;${__dateTimeConvert(${__P(TESTSTART.MS)},,dd-MM-yy_HH:mm,)}&apos; + &apos; &apos; + &apos;${__P(TimeDurationTest,${custom_duration})}&apos;.toString(); return Tag1;)}&amp;var-request=all&amp;var-data_source=${grafana_data_source}&amp;var-measurement_name=jmeter&amp;var-send_interval=5&amp;var-TopRps=All&amp;var-TopAvg=All&amp;var-Top90=All&amp;var-Top95=All&amp;var-Top99=All&quot;)
+var wait = new pkg.WebDriverWait(WDS.browser, 20000)
+wait.until(pkg.ExpectedConditions.visibilityOfElementLocated(pkg.By.className(&quot;table-panel-table&quot;)));
+var elem = WDS.browser.findElement(pkg.By.className(&quot;table-panel-table&quot;))
+if (elem.empty) {
+	WDS.sampleResult.successful = false
+     WDS.sampleResult.responseMessage = &apos;There were no results returned&apos;
+}
 WDS.vars.put(&quot;html1&quot;,WDS.browser.getPageSource())
-WDS.sampleResult.sampleEnd()</stringProp>
+WDS.sampleResult.sampleEnd()
+</stringProp>
             <stringProp name="WebDriverSampler.parameters"></stringProp>
             <stringProp name="WebDriverSampler.language">javascript</stringProp>
           </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
@@ -2641,7 +2711,9 @@ vars.put(&quot;final_page&quot;,final_page)
           </JSR223PostProcessor>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Server Metrics" enabled="false"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Server Metrics" enabled="false">
+          <stringProp name="TestPlan.comments">Это пример того как можно дергать еще и метрики аппаратных ресурсов. Моя реализация связана с импортом графиков из zabbix</stringProp>
+        </GenericController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Disk1" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
@@ -2718,8 +2790,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -2738,7 +2810,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -2845,8 +2917,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -2864,7 +2936,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -2971,8 +3043,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -2990,7 +3062,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -3097,8 +3169,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -3116,7 +3188,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -3223,8 +3295,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -3242,7 +3314,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -3349,8 +3421,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -3368,7 +3440,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -3475,8 +3547,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -3494,7 +3566,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -3601,8 +3673,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -3620,7 +3692,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -3727,8 +3799,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -3746,7 +3818,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -3853,8 +3925,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -3872,7 +3944,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -3979,8 +4051,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -3998,7 +4070,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -4105,8 +4177,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -4124,7 +4196,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -4231,8 +4303,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -4250,7 +4322,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -4357,8 +4429,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -4376,7 +4448,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -4483,8 +4555,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -4502,7 +4574,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -4609,8 +4681,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -4628,7 +4700,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -4735,8 +4807,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -4754,7 +4826,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -4861,8 +4933,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -4880,7 +4952,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -4987,8 +5059,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -5006,7 +5078,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -5113,8 +5185,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -5132,7 +5204,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -5239,8 +5311,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -5258,7 +5330,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -5365,8 +5437,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -5384,7 +5456,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -5491,8 +5563,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -5510,7 +5582,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -5617,8 +5689,8 @@ vars.put(&quot;final_page&quot;,final_page)
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/FxGY078Wz/server-metrics</stringProp>
@@ -5636,7 +5708,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -5669,14 +5741,16 @@ vars.put(&quot;final_page&quot;,final_page)
             <hashTree/>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Generator Metrics" enabled="false"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Generator Metrics" enabled="false">
+          <stringProp name="TestPlan.comments">Этот пример описывает то, как можно дергать метрики аппаратных ресурсов с машин генераторов нагрузки. Реализация через telegraf для windows машин.</stringProp>
+        </GenericController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="CPUhost" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/fDy3gEkGz/load-generators-hosts-monitoring?orgId=1&amp;var-hostname=${__machineName}&amp;var-disk=All&amp;var-process=All&amp;var-network=All&amp;from=${datetimestart}&amp;to=${datetimeend}&amp;panelId=7&amp;width=1000&amp;height=500&amp;tz=Europe%2FMoscow</stringProp>
@@ -5694,7 +5768,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -5730,8 +5804,8 @@ vars.put(&quot;final_page&quot;,final_page)
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/fDy3gEkGz/load-generators-hosts-monitoring?orgId=1&amp;var-hostname=${__machineName}&amp;var-process=All&amp;var-network=All&amp;from=${datetimestart}&amp;to=${datetimeend}&amp;panelId=14&amp;var-disk=C:&amp;width=1000&amp;height=500&amp;tz=Europe%2FMoscow</stringProp>
@@ -5749,7 +5823,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -5785,8 +5859,8 @@ vars.put(&quot;final_page&quot;,final_page)
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${influx_host}</stringProp>
-            <stringProp name="HTTPSampler.port">3000</stringProp>
+            <stringProp name="HTTPSampler.domain">${grafana_host}</stringProp>
+            <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">render/d-solo/fDy3gEkGz/load-generators-hosts-monitoring?orgId=1&amp;var-hostname=${__machineName}&amp;var-disk=All&amp;var-process=All&amp;var-network=All&amp;from=${datetimestart}&amp;to=${datetimeend}&amp;panelId=10&amp;width=1000&amp;height=500&amp;tz=Europe%2FMoscow</stringProp>
@@ -5804,7 +5878,7 @@ vars.put(&quot;final_page&quot;,final_page)
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer eyJrIjoiRXFmdGNTdG9wa3RIdWZuaVBlUUo3RVAzUkNqV1dYazAiLCJuIjoiQUEiLCJpZCI6MX0=</stringProp>
+                  <stringProp name="Header.value">Bearer ${grafana_api_key}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -5880,141 +5954,6 @@ vars.put(&quot;final_page&quot;,final_page)
                 <stringProp name="File.paramname">file</stringProp>
                 <stringProp name="File.mimetype">image/png</stringProp>
               </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Disk1.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Disk1.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Disk2.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Disk2.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}DiskLatency1.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}DiskLatency1.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}DiskLatency2.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}DiskLatency2.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}DiskRW1.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}DiskRW1.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}DiskRW2.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}DiskRW2.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Memory1.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Memory1.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Memory2.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Memory2.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}CPU1.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}CPU1.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}CPU2.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}CPU2.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}CPUqueue1.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}CPUqueue1.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}CPUqueue2.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}CPUqueue2.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Cache1.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Cache1.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Cache2.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Cache2.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Network1.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Network1.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Network2.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Network2.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}NetworkTCP1.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}NetworkTCP1.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}NetworkTCP2.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}NetworkTCP2.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Connection1.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Connection1.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Connection2.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Connection2.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}ReqTime1.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}ReqTime1.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}ReqTime2.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}ReqTime2.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Requests1.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Requests1.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Requests2.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}Requests2.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}CPUhost.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}CPUhost.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}MemoryHost.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}MemoryHost.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
-              <elementProp name="${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}DiskHost.png" elementType="HTTPFileArg">
-                <stringProp name="File.path">${__groovy(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir();)}${__groovy(File.separator)}DiskHost.png</stringProp>
-                <stringProp name="File.paramname">file</stringProp>
-                <stringProp name="File.mimetype">image/png</stringProp>
-              </elementProp>
             </collectionProp>
           </elementProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
@@ -6034,7 +5973,7 @@ vars.put(&quot;final_page&quot;,final_page)
           <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="TestPlan.comments">Если каких то файлов нет - скрипт упадет с ошибкой</stringProp>
+          <stringProp name="TestPlan.comments">Если каких то файлов нет - скрипт упадет с ошибкой, файлы беруться из контроллеров Metrics</stringProp>
         </HTTPSamplerProxy>
         <hashTree>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP HeaderManager" enabled="true">
