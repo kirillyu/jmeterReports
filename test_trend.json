@@ -1662,7 +1662,7 @@
           "text": "localhost",
           "value": "localhost"
         },
-        "hide": 2,
+        "hide": 0,
         "label": "grafana_host",
         "name": "grafana_host",
         "options": [
