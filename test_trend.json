@@ -1396,7 +1396,7 @@
           "decimals": 2,
           "link": true,
           "linkTooltip": "Dashboard",
-          "linkUrl": "http://${grafana-host}:3000/d/LeWVcwrZk/apache-jmeter-dashboard-using-core-influxdbbackendlistenerclient?from=${__cell_1}&to=${__cell_5}&var-project=${__cell_2}&var-limit=5&var-run=${__cell}",
+          "linkUrl": "http://$grafana_host:3000/d/LeWVcwrZk/apache-jmeter-dashboard-using-core-influxdbbackendlistenerclient?from=${__cell_1}&to=${__cell_5}&var-project=${__cell_2}&var-limit=5&var-run=${__cell}",
           "mappingType": 1,
           "pattern": "testRun",
           "thresholds": [],
