@@ -2381,14 +2381,18 @@ while (attempt2&lt;5) {
 }
 
 WDS.browser.get(&quot;http://${grafana_host}:${grafana_port}/d/renderdash/render-dash?viewPanel=42&amp;orgId=1&amp;from=${datetimestart}&amp;to=${datetimeend}&amp;var-project=${project_name}&amp;var-limit=5&amp;var-run=${__groovy(def Tag1 = &apos;${__dateTimeConvert(${__P(TESTSTART.MS)},,dd-MM-yy_HH:mm,)}&apos; + &apos; &apos; + &apos;${__P(TimeDurationTest,${custom_duration})}&apos;.toString(); return Tag1;)}&amp;var-request=all&amp;var-data_source=${grafana_data_source}&amp;var-measurement_name=jmeter&amp;var-send_interval=5&amp;var-TopRps=All&amp;var-TopAvg=All&amp;var-Top90=All&amp;var-Top95=All&amp;var-Top99=All&quot;)
-var wait = new pkg.WebDriverWait(WDS.browser, 20000)
-wait.until(pkg.ExpectedConditions.visibilityOfElementLocated(pkg.By.className(&quot;table-panel-table&quot;)));
-var elem = WDS.browser.findElement(pkg.By.className(&quot;table-panel-table&quot;))
-if (elem.empty) {
-	WDS.sampleResult.successful = false
+try {
+	var wait = new pkg.WebDriverWait(WDS.browser, 20)
+	wait.until(pkg.ExpectedConditions.visibilityOfElementLocated(pkg.By.className(&quot;table-panel-table&quot;)));
+	var elem = WDS.browser.findElement(pkg.By.className(&quot;table-panel-table&quot;))
+	WDS.vars.put(&quot;html&quot;,WDS.browser.getPageSource())
+	WDS.sampleResult.sampleEnd()
+} catch(ex){
      WDS.sampleResult.responseMessage = &apos;There were no results returned&apos;
+     WDS.vars.put(&quot;html&quot;,&quot;null&quot;)
+     WDS.sampleResult.sampleEnd()
 }
-WDS.vars.put(&quot;html&quot;,WDS.browser.getPageSource())</stringProp>
+</stringProp>
             <stringProp name="WebDriverSampler.parameters"></stringProp>
             <stringProp name="WebDriverSampler.language">javascript</stringProp>
           </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
@@ -2460,6 +2464,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 
+	def f = vars.get(&quot;html&quot;)
+	if (f==&quot;null&quot;) {
+	   	return  vars.put(&quot;output&quot;,&quot;Ошибки не найдены&quot;)
+	}
 	def Output = &apos;&apos;&apos;&lt;table class=\\\\&quot;wrapped\\\\&quot;&gt;&lt;thead&gt;&lt;tr&gt;&apos;&apos;&apos;
 	   def f = vars.get(&quot;html&quot;)
  	   Document doc = Jsoup.parse(f);
@@ -2524,16 +2532,18 @@ var pkg = JavaImporter(org.openqa.selenium, org.openqa.selenium.support.ui)
 WDS.sampleResult.sampleStart()
 
 WDS.browser.get(&quot;http://${grafana_host}:${grafana_port}/d/renderdash/render-dash?viewPanel=52&amp;orgId=1&amp;from=${datetimestart}&amp;to=${datetimeend}&amp;var-project=${project_name}&amp;var-limit=5&amp;var-run=${__groovy(def Tag1 = &apos;${__dateTimeConvert(${__P(TESTSTART.MS)},,dd-MM-yy_HH:mm,)}&apos; + &apos; &apos; + &apos;${__P(TimeDurationTest,${custom_duration})}&apos;.toString(); return Tag1;)}&amp;var-request=all&amp;var-data_source=${grafana_data_source}&amp;var-measurement_name=jmeter&amp;var-send_interval=5&amp;var-TopRps=All&amp;var-TopAvg=All&amp;var-Top90=All&amp;var-Top95=All&amp;var-Top99=All&quot;)
-var wait = new pkg.WebDriverWait(WDS.browser, 20000)
-wait.until(pkg.ExpectedConditions.visibilityOfElementLocated(pkg.By.className(&quot;table-panel-table&quot;)));
-var elem = WDS.browser.findElement(pkg.By.className(&quot;table-panel-table&quot;))
-if (elem.empty) {
+try {
+	var wait = new pkg.WebDriverWait(WDS.browser, 20)
+	wait.until(pkg.ExpectedConditions.visibilityOfElementLocated(pkg.By.className(&quot;table-panel-table&quot;)));
+	var elem = WDS.browser.findElement(pkg.By.className(&quot;table-panel-table&quot;))
+	WDS.vars.put(&quot;html1&quot;,WDS.browser.getPageSource())
+	WDS.sampleResult.sampleEnd()
+} catch(ex){
 	WDS.sampleResult.successful = false
-     WDS.sampleResult.responseMessage = &apos;There were no results returned&apos;
-}
-WDS.vars.put(&quot;html1&quot;,WDS.browser.getPageSource())
-WDS.sampleResult.sampleEnd()
-</stringProp>
+     WDS.sampleResult.responseMessage = &apos;There were no results returned!&apos;
+     WDS.vars.put(&quot;html1&quot;,&quot;null&quot;)
+     WDS.sampleResult.sampleEnd()
+}</stringProp>
             <stringProp name="WebDriverSampler.parameters"></stringProp>
             <stringProp name="WebDriverSampler.language">javascript</stringProp>
           </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
@@ -2627,7 +2637,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-
+     def f = vars.get(&quot;html1&quot;)
+     if (f==&quot;null&quot;) {
+   	  return  vars.put(&quot;outputBig&quot;,&quot;Нет данных по тесту&quot;)
+     }
 	def Output = &apos;&apos;&apos;&lt;table class=\\\\&quot;wrapped\\\\&quot;&gt;&lt;thead&gt;&lt;tr&gt;&apos;&apos;&apos;
 	   def f = vars.get(&quot;html1&quot;)
  	   Document doc = Jsoup.parse(f);
