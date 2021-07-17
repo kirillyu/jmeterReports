@@ -684,7 +684,7 @@ vars.put(&quot;title&quot;,title)
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">сontent-type</stringProp>
+                <stringProp name="Header.name">content-type</stringProp>
                 <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
               </elementProp>
             </collectionProp>
