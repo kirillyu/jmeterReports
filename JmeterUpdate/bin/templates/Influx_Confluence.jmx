@@ -498,7 +498,7 @@ def template = &quot;&quot;
 def host1 = &quot;&quot;
 def host2 = &quot;&quot;
 def version_path = &quot;&quot;
- olger_id = &quot;&quot;
+def folger_id = &quot;&quot;
 def template_page = &quot;&quot;
 // Если проектов несколько удобнее задавать данные по ним через свитч но задавать папку с отчетами в Confluence и страницу отчета нужно вручную
 switch (&quot;${project_name}&quot;){
