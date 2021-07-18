@@ -116,6 +116,12 @@
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Порт графаны</stringProp>
           </elementProp>
+          <elementProp name="renderdash_id" elementType="Argument">
+            <stringProp name="Argument.name">renderdash_id</stringProp>
+            <stringProp name="Argument.value">xneQwjEGk</stringProp>
+            <stringProp name="Argument.desc">ID дашборда Render Dash. Берётся из url дашборда, после импорта в графану</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
           <elementProp name="confl_user" elementType="Argument">
             <stringProp name="Argument.name">confl_user</stringProp>
             <stringProp name="Argument.value">tester</stringProp>
@@ -498,7 +504,7 @@ def template = &quot;&quot;
 def host1 = &quot;&quot;
 def host2 = &quot;&quot;
 def version_path = &quot;&quot;
- olger_id = &quot;&quot;
+def folger_id = &quot;&quot;
 def template_page = &quot;&quot;
 // Если проектов несколько удобнее задавать данные по ним через свитч но задавать папку с отчетами в Confluence и страницу отчета нужно вручную
 switch (&quot;${project_name}&quot;){
@@ -684,7 +690,7 @@ vars.put(&quot;title&quot;,title)
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">сontent-type</stringProp>
+                <stringProp name="Header.name">content-type</stringProp>
                 <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
               </elementProp>
             </collectionProp>
@@ -963,7 +969,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
             <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">render/d-solo/renderdash/render-dash</stringProp>
+            <stringProp name="HTTPSampler.path">render/d-solo/${renderdash_id}/render-dash</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -1153,7 +1159,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
             <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">render/d-solo/renderdash/render-dash</stringProp>
+            <stringProp name="HTTPSampler.path">render/d-solo/${renderdash_id}/render-dash</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -1343,7 +1349,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
             <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">render/d-solo/renderdash/render-dash</stringProp>
+            <stringProp name="HTTPSampler.path">render/d-solo/${renderdash_id}/render-dash</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -1533,7 +1539,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
             <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">render/d-solo/renderdash/render-dash</stringProp>
+            <stringProp name="HTTPSampler.path">render/d-solo/${renderdash_id}/render-dash</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -1723,7 +1729,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
             <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">render/d-solo/renderdash/render-dash</stringProp>
+            <stringProp name="HTTPSampler.path">render/d-solo/${renderdash_id}/render-dash</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -1912,7 +1918,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
             <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">render/d-solo/renderdash/render-dash</stringProp>
+            <stringProp name="HTTPSampler.path">render/d-solo/${renderdash_id}/render-dash</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -2102,7 +2108,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
             <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">render/d-solo/renderdash/render-dash</stringProp>
+            <stringProp name="HTTPSampler.path">render/d-solo/${renderdash_id}/render-dash</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -2292,7 +2298,7 @@ vars.put(&quot;final_page&quot;,value)</stringProp>
             <stringProp name="HTTPSampler.port">${grafana_port}</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">render/d-solo/renderdash/render-dash</stringProp>
+            <stringProp name="HTTPSampler.path">render/d-solo/${renderdash_id}/render-dash</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -2380,7 +2386,7 @@ while (attempt2&lt;5) {
 	attempt2++
 }
 
-WDS.browser.get(&quot;http://${grafana_host}:${grafana_port}/d/renderdash/render-dash?viewPanel=42&amp;orgId=1&amp;from=${datetimestart}&amp;to=${datetimeend}&amp;var-project=${project_name}&amp;var-limit=5&amp;var-run=${__groovy(def Tag1 = &apos;${__dateTimeConvert(${__P(TESTSTART.MS)},,dd-MM-yy_HH:mm,)}&apos; + &apos; &apos; + &apos;${__P(TimeDurationTest,${custom_duration})}&apos;.toString(); return Tag1;)}&amp;var-request=all&amp;var-data_source=${grafana_data_source}&amp;var-measurement_name=jmeter&amp;var-send_interval=5&amp;var-TopRps=All&amp;var-TopAvg=All&amp;var-Top90=All&amp;var-Top95=All&amp;var-Top99=All&quot;)
+WDS.browser.get(&quot;http://${grafana_host}:${grafana_port}/d/${renderdash_id}/render-dash?viewPanel=42&amp;orgId=1&amp;from=${datetimestart}&amp;to=${datetimeend}&amp;var-project=${project_name}&amp;var-limit=5&amp;var-run=${__groovy(def Tag1 = &apos;${__dateTimeConvert(${__P(TESTSTART.MS)},,dd-MM-yy_HH:mm,)}&apos; + &apos; &apos; + &apos;${__P(TimeDurationTest,${custom_duration})}&apos;.toString(); return Tag1;)}&amp;var-request=all&amp;var-data_source=${grafana_data_source}&amp;var-measurement_name=jmeter&amp;var-send_interval=5&amp;var-TopRps=All&amp;var-TopAvg=All&amp;var-Top90=All&amp;var-Top95=All&amp;var-Top99=All&quot;)
 try {
 	var wait = new pkg.WebDriverWait(WDS.browser, 20)
 	wait.until(pkg.ExpectedConditions.visibilityOfElementLocated(pkg.By.className(&quot;table-panel-table&quot;)));
@@ -2530,7 +2536,7 @@ var pkg = JavaImporter(org.openqa.selenium, org.openqa.selenium.support.ui)
 
 WDS.sampleResult.sampleStart()
 
-WDS.browser.get(&quot;http://${grafana_host}:${grafana_port}/d/renderdash/render-dash?viewPanel=52&amp;orgId=1&amp;from=${datetimestart}&amp;to=${datetimeend}&amp;var-project=${project_name}&amp;var-limit=5&amp;var-run=${__groovy(def Tag1 = &apos;${__dateTimeConvert(${__P(TESTSTART.MS)},,dd-MM-yy_HH:mm,)}&apos; + &apos; &apos; + &apos;${__P(TimeDurationTest,${custom_duration})}&apos;.toString(); return Tag1;)}&amp;var-request=all&amp;var-data_source=${grafana_data_source}&amp;var-measurement_name=jmeter&amp;var-send_interval=5&amp;var-TopRps=All&amp;var-TopAvg=All&amp;var-Top90=All&amp;var-Top95=All&amp;var-Top99=All&quot;)
+WDS.browser.get(&quot;http://${grafana_host}:${grafana_port}/d/${renderdash_id}/render-dash?viewPanel=52&amp;orgId=1&amp;from=${datetimestart}&amp;to=${datetimeend}&amp;var-project=${project_name}&amp;var-limit=5&amp;var-run=${__groovy(def Tag1 = &apos;${__dateTimeConvert(${__P(TESTSTART.MS)},,dd-MM-yy_HH:mm,)}&apos; + &apos; &apos; + &apos;${__P(TimeDurationTest,${custom_duration})}&apos;.toString(); return Tag1;)}&amp;var-request=all&amp;var-data_source=${grafana_data_source}&amp;var-measurement_name=jmeter&amp;var-send_interval=5&amp;var-TopRps=All&amp;var-TopAvg=All&amp;var-Top90=All&amp;var-Top95=All&amp;var-Top99=All&quot;)
 try {
 	var wait = new pkg.WebDriverWait(WDS.browser, 20)
 	wait.until(pkg.ExpectedConditions.visibilityOfElementLocated(pkg.By.className(&quot;table-panel-table&quot;)));
